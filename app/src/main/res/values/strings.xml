@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NewsSpace</string>
+    <string name="HomeToolbarTitle">Latest news</string>
+    <string name="home_fragment_placeholder">This is home fragment</string>
+    <string name="articles">Articles</string>
+    <string name="blogs">Blogs</string>
+    <string name="reports">Reports</string>
+</resources>

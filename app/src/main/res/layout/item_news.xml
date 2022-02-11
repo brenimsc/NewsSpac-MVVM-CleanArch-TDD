@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--    Esse XML representa um item da recyclerview; é um DataBindingLayout que recebe um objeto do
+            tipo Post e usa os BindingAdapters definidos no arquivo PostBindingAdapters para fazer
+            a conversão e exibição dos dados.
+    -->
+    <data>
+        <variable
+            name="news"
+            type="com.android.newsspace.data.model.News" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/item_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardBackgroundColor="@color/medium_gray"
+            android:elevation="3dp"
+            app:cardCornerRadius="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/item_image_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    newsImage="@{news}"
+                    tools:src="@tools:sample/backgrounds/scenic"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:id="@+id/item_title_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    newsTitle="@{news}"
+                    app:layout_constraintTop_toBottomOf="@id/item_image_iv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/ItemTitle" />
+
+                <TextView
+                    android:id="@+id/item_summary_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    newsSummary="@{news}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_title_tv"
+                    style="@style/ItemBodyText" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/item_published_ch"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    newsPublishedDate="@{news}"
+                    app:chipBackgroundColor="@color/gradient_bluee_dark"
+                    app:layout_constraintStart_toStartOf="@id/item_summary_tv"
+                    app:layout_constraintTop_toBottomOf="@id/item_summary_tv"
+                    style="@style/ChipText" />
+
+                <!-- A visibilidade desse chip é controlada pelo BindingAdapter -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/item_launch_ch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipIcon="@drawable/ic_rocket"
+                    app:chipIconTint="@color/off_white"
+                    tools:text="1 launch event(s)"
+                    style="@style/ChipText"
+                    app:chipBackgroundColor="@color/gradient_bluee_dark"
+                    itemHasLaunch="@{news}"
+                    app:layout_constraintStart_toEndOf="@id/item_published_ch"
+                    app:layout_constraintTop_toBottomOf="@id/item_summary_tv"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
